@@ -1,0 +1,405 @@
+/* =========================================================
+   STUDIO KATRACHO — Design System
+   Basado en el portafolio (fondo negro, tipografía bold
+   condensada en mayúsculas, texto gris claro, minimalista)
+   Tipografía: Poppins (Google Fonts)
+   Uso: Laravel + Vite/Bun -> importar en resources/css/app.css
+   ========================================================= */
+
+/* 1. Fuente ---------------------------------------------- */
+/* Si usas bun/npm: bun add @fontsource/poppins
+   y en tu app.js: import "@fontsource/poppins/300.css"; etc.
+   O bien, deja el @import de Google Fonts de abajo. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* 2. Tokens ------------------------------------------------ */
+:root {
+  /* Colores */
+  --ktc-bg: #000000;
+  --ktc-bg-soft: #0d0d0d;
+  --ktc-surface: #141414;
+  --ktc-border: rgba(255, 255, 255, 0.12);
+
+  --ktc-text: #ededed;        /* titulares */
+  --ktc-text-muted: #cfcfcf;  /* cuerpo de texto */
+  --ktc-text-dim: #8a8a8a;    /* labels, fechas, metadatos */
+  --ktc-white: #ffffff;
+
+  /* Tipografía */
+  --ktc-font: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --ktc-fs-hero: clamp(3rem, 9vw, 8rem);
+  --ktc-fs-h1: clamp(2.25rem, 5vw, 4rem);
+  --ktc-fs-h2: clamp(1.75rem, 3.5vw, 2.75rem);
+  --ktc-fs-h3: clamp(1.25rem, 2.2vw, 1.75rem);
+  --ktc-fs-body: 1rem;
+  --ktc-fs-small: 0.875rem;
+  --ktc-fs-label: 0.75rem;
+
+  --ktc-lh-tight: 0.92;
+  --ktc-tracking-tight: -0.02em;
+  --ktc-tracking-wide: 0.08em;
+
+  /* Layout */
+  --ktc-radius: 6px;
+  --ktc-radius-lg: 14px;
+  --ktc-gap: 2rem;
+  --ktc-container: 1400px;
+  --ktc-pad-x: clamp(1.25rem, 5vw, 5rem);
+  --ktc-pad-y: clamp(3rem, 8vw, 6rem);
+
+  --ktc-transition: 200ms ease;
+}
+
+/* 3. Reset base --------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ktc-bg);
+  color: var(--ktc-text-muted);
+  font-family: var(--ktc-font);
+  font-weight: 400;
+  font-size: var(--ktc-fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+button { font-family: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--ktc-white);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* 4. Tipografía ----------------------------------------------
+   Los titulares del PDF son extra bold, en mayúsculas,
+   con tracking negativo y line-height muy ajustado. */
+h1, h2, h3, h4,
+.ktc-h1, .ktc-h2, .ktc-h3, .ktc-h4 {
+  color: var(--ktc-text);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--ktc-tracking-tight);
+  line-height: var(--ktc-lh-tight);
+  margin: 0 0 1rem;
+}
+
+h1, .ktc-h1 { font-size: var(--ktc-fs-h1); font-weight: 900; }
+h2, .ktc-h2 { font-size: var(--ktc-fs-h2); }
+h3, .ktc-h3 { font-size: var(--ktc-fs-h3); font-weight: 700; }
+
+.ktc-hero-title {
+  font-size: var(--ktc-fs-hero);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.88;
+  color: var(--ktc-text);
+}
+
+p { margin: 0 0 1rem; color: var(--ktc-text-muted); }
+p:last-child { margin-bottom: 0; }
+
+/* Eyebrow / label pequeño ("Studio Katracho", "Creative Presentation") */
+.ktc-label {
+  display: inline-block;
+  font-size: var(--ktc-fs-label);
+  font-weight: 600;
+  letter-spacing: var(--ktc-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ktc-white);
+}
+
+.ktc-meta {
+  font-size: var(--ktc-fs-small);
+  color: var(--ktc-text-dim);
+  font-weight: 400;
+}
+
+/* 5. Layout base ---------------------------------------------- */
+.ktc-container {
+  max-width: var(--ktc-container);
+  margin-inline: auto;
+  padding-inline: var(--ktc-pad-x);
+}
+
+.ktc-section {
+  padding-block: var(--ktc-pad-y);
+}
+
+.ktc-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ktc-gap);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .ktc-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* 6. Navbar ------------------------------------------------------ */
+.ktc-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--ktc-pad-x);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ktc-border);
+}
+
+.ktc-navbar__logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ktc-tracking-tight);
+  color: var(--ktc-white);
+}
+
+.ktc-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.ktc-navbar__links a {
+  font-size: var(--ktc-fs-small);
+  font-weight: 500;
+  color: var(--ktc-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--ktc-transition);
+}
+
+.ktc-navbar__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--ktc-white);
+  transition: width var(--ktc-transition);
+}
+
+.ktc-navbar__links a:hover,
+.ktc-navbar__links a.is-active {
+  color: var(--ktc-white);
+}
+
+.ktc-navbar__links a:hover::after,
+.ktc-navbar__links a.is-active::after {
+  width: 100%;
+}
+
+/* Menú móvil (hamburguesa) */
+.ktc-navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ktc-white);
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .ktc-navbar__links {
+    position: fixed;
+    inset: 0 0 0 auto;
+    height: 100vh;
+    width: min(75vw, 320px);
+    background: var(--ktc-bg-soft);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform var(--ktc-transition);
+    border-left: 1px solid var(--ktc-border);
+  }
+  .ktc-navbar__links.is-open { transform: translateX(0); }
+  .ktc-navbar__toggle { display: block; }
+}
+
+/* 7. Hero ------------------------------------------------------- */
+.ktc-hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--ktc-pad-y) var(--ktc-pad-x);
+  border-bottom: 1px solid var(--ktc-border);
+}
+
+.ktc-hero__top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.ktc-hero__subtitle {
+  max-width: 40ch;
+  font-size: 1.1rem;
+  color: var(--ktc-text-muted);
+  margin-top: 2rem;
+}
+
+/* 8. Botones ------------------------------------------------------ */
+.ktc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ktc-white);
+  background: transparent;
+  color: var(--ktc-white);
+  font-weight: 600;
+  font-size: var(--ktc-fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background var(--ktc-transition), color var(--ktc-transition);
+}
+
+.ktc-btn:hover {
+  background: var(--ktc-white);
+  color: var(--ktc-bg);
+}
+
+.ktc-btn--solid {
+  background: var(--ktc-white);
+  color: var(--ktc-bg);
+}
+
+.ktc-btn--solid:hover {
+  background: var(--ktc-text-muted);
+}
+
+/* 9. Tarjetas / imágenes de portafolio -------------------------- */
+.ktc-card {
+  background: var(--ktc-surface);
+  border: 1px solid var(--ktc-border);
+  border-radius: var(--ktc-radius);
+  overflow: hidden;
+}
+
+.ktc-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.ktc-card__body {
+  padding: 1.5rem;
+}
+
+.ktc-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ktc-gap);
+}
+
+/* 10. Formularios (Contacto) -------------------------------------- */
+.ktc-field {
+  margin-bottom: 1.25rem;
+}
+
+.ktc-field label {
+  display: block;
+  font-size: var(--ktc-fs-small);
+  color: var(--ktc-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.ktc-field input,
+.ktc-field textarea {
+  width: 100%;
+  background: var(--ktc-bg-soft);
+  border: 1px solid var(--ktc-border);
+  border-radius: var(--ktc-radius);
+  padding: 0.85rem 1rem;
+  color: var(--ktc-white);
+  font-family: var(--ktc-font);
+  font-size: var(--ktc-fs-body);
+  transition: border-color var(--ktc-transition);
+}
+
+.ktc-field input:focus,
+.ktc-field textarea:focus {
+  border-color: var(--ktc-white);
+  outline: none;
+}
+
+/* 11. Footer ------------------------------------------------------- */
+.ktc-footer {
+  border-top: 1px solid var(--ktc-border);
+  padding: 2rem var(--ktc-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ktc-social {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ktc-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--ktc-fs-small);
+  color: var(--ktc-text-muted);
+  transition: color var(--ktc-transition);
+}
+
+.ktc-social a:hover { color: var(--ktc-white); }
+
+.ktc-social svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* 12. Utilidades ----------------------------------------------------- */
+.ktc-text-center { text-align: center; }
+.ktc-mt-0 { margin-top: 0; }
+.ktc-mb-0 { margin-bottom: 0; }
+.ktc-max-w { max-width: 60ch; }
+.ktc-divider {
+  border: none;
+  border-top: 1px solid var(--ktc-border);
+  margin: var(--ktc-gap) 0;
+}
