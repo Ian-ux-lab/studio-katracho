@@ -49,7 +49,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-px bg-transparent md:bg-[#1A1A1A]">
                 <div class="bg-[#111111] group">
                     <div class="aspect-[3/4] bg-[#0A0A0A] overflow-hidden">
-                        <img src="{{ asset('img/equipo studio/ian.webp') }}" alt="Ian Saenz" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="{{ asset('img/equipo studio/ian.webp') }}" alt="Ian Saenz" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 team-img">
                     </div>
                     <div class="p-6">
                         <h3 class="text-base font-semibold mb-1">Ian Saenz</h3>
@@ -58,7 +58,7 @@
 
                 <div class="bg-[#111111] group">
                     <div class="aspect-[3/4] bg-[#0A0A0A] overflow-hidden">
-                        <img src="{{ asset('img/equipo studio/alexis.webp') }}" alt="Alexis Salinas" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="{{ asset('img/equipo studio/alexis.webp') }}" alt="Alexis Salinas" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 team-img">
                     </div>
                     <div class="p-6">
                         <h3 class="text-base font-semibold mb-1">Alexis Salinas</h3>
@@ -67,13 +67,23 @@
 
                 <div class="bg-[#111111] group">
                     <div class="aspect-[3/4] bg-[#0A0A0A] overflow-hidden">
-                        <img src="{{ asset('img/equipo studio/tito.webp') }}" alt="Rodil Ramirez" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="{{ asset('img/equipo studio/tito.webp') }}" alt="Rodil Ramirez" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 team-img">
                     </div>
                     <div class="p-6">
                         <h3 class="text-base font-semibold mb-1">Rodil Ramirez</h3>
                     </div>
                 </div>
             </div>
+
+            <script>
+                if ('ontouchstart' in window) {
+                    document.querySelectorAll('.team-img').forEach(function(img) {
+                        img.addEventListener('click', function() {
+                            this.classList.toggle('grayscale-0');
+                        });
+                    });
+                }
+            </script>
         </div>
     </section>
 

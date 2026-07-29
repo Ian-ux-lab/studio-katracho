@@ -282,18 +282,39 @@
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
     .heading-xl {
-        font-size: 2rem;
+        font-size: 2.25rem;
     }
     .heading-lg {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
+    }
+    .text-body {
+        font-size: 1rem;
+    }
+    .text-body-lg {
+        font-size: 1.125rem;
+    }
+    .text-sm {
+        font-size: 0.9375rem;
+    }
+    .text-xs {
+        font-size: 0.8125rem;
+    }
+    .text-base {
+        font-size: 1.0625rem;
     }
     .btn-primary, .btn-outline {
         padding: 0.75rem 1.5rem;
     }
     .section-label {
-        font-size: 0.625rem;
+        font-size: 0.7rem;
         margin-bottom: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9375rem;
     }
     #album-modal img {
         max-height: 80vh;
