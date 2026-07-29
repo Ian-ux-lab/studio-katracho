@@ -34,9 +34,6 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-[#0A0A0A] border-t border-[#1A1A1A]">
             <div class="px-6 py-8 flex flex-col gap-6">
-                <a href="/" class="flex items-center gap-2 mb-4">
-                    <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-14 w-auto">
-                </a>
                 <a href="/" class="text-base font-medium text-white">Inicio</a>
                 <a href="/about" class="text-base text-[#666666] hover:text-white transition-colors">Nosotros</a>
                 <a href="/portfolio" class="text-base text-[#666666] hover:text-white transition-colors">Portafolio</a>
