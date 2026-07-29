@@ -15,7 +15,7 @@
                     </h1>
 
                     <p class="text-body-lg max-w-md mb-10 fade-in fade-in-delay-2">
-                        Creamos fotos, videos y estrategia de contenido para marcas que quieren destacar en redes sociales.
+                        Cubrimos eventos con fotografía y video, y creamos sesiones personalizadas para todo tipo de proyectos.
                     </p>
 
                     <div class="flex flex-wrap gap-4 fade-in fade-in-delay-3">
@@ -44,10 +44,10 @@
     <section class="py-24 lg:py-32 bg-white">
         <div class="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0A0A0A] mb-6">
-                ¿Listo para crear <br>contenido que <span class="font-light">destaque</span>?
+                ¿Listo para crear <br>contenido visual <span class="font-light">impactante</span>?
             </h2>
             <p class="text-sm text-[#666666] max-w-md mx-auto mb-10">
-                Cuéntanos tu marca y te ayudamos a crear contenido que conecte con tu audiencia.
+                Cuéntanos sobre tu proyecto o evento y te ayudamos a crear el contenido visual perfecto.
             </p>
             <a href="/contact" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white text-xs font-medium tracking-wider uppercase hover:bg-[#222222] transition-colors duration-300">
                 Empezar

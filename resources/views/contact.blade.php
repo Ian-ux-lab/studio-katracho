@@ -8,7 +8,7 @@
             <div class="max-w-2xl">
                 <div class="section-label">Contacto</div>
                 <h1 class="heading-xl mb-4">Hablemos</h1>
-                <p class="text-body-lg">¿Tienes un proyecto en mente? Cuéntanos y te contactamos.</p>
+                <p class="text-body-lg">¿Tienes un proyecto o evento en mente? Cuéntanos y te contactamos.</p>
             </div>
         </div>
     </section>
@@ -40,33 +40,34 @@
 
                 <div class="lg:col-span-8">
                     <div class="p-8 lg:p-10 bg-[#111111] border border-[#1A1A1A]">
-                        <form class="space-y-6">
+                        <form method="POST" action="/contact" class="space-y-6">
+                            @csrf
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
                                     <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Nombre</label>
-                                    <input type="text" class="input-field" placeholder="Tu nombre">
+                                    <input type="text" name="name" class="input-field" placeholder="Tu nombre" required>
                                 </div>
                                 <div>
                                     <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Email</label>
-                                    <input type="email" class="input-field" placeholder="tu@email.com">
+                                    <input type="email" name="email" class="input-field" placeholder="tu@email.com" required>
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">¿Qué necesitas?</label>
-                                <select class="input-field appearance-none cursor-pointer">
+                                <select name="service" class="input-field appearance-none cursor-pointer" required>
                                     <option value="">Selecciona un servicio</option>
-                                    <option value="redes">Contenido para redes sociales</option>
-                                    <option value="foto">Fotografía</option>
-                                    <option value="video">Producción de video</option>
-                                    <option value="estrategia">Estrategia de contenido</option>
+                                    <option value="sesion-fotografica">Sesión fotográfica</option>
+                                    <option value="cobertura-evento">Cobertura de evento</option>
+                                    <option value="produccion-video">Producción de video</option>
+                                    <option value="contenido-redes">Contenido para redes</option>
                                     <option value="otro">Otro</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Mensaje</label>
-                                <textarea rows="5" class="input-field resize-none" placeholder="Cuéntanos sobre tu marca y lo que necesitas..."></textarea>
+                                <textarea name="message" rows="5" class="input-field resize-none" placeholder="Cuéntanos sobre tu proyecto o evento y lo que necesitas..." required></textarea>
                             </div>
 
                             <div class="flex items-center justify-between pt-2">
@@ -77,6 +78,12 @@
                                 </button>
                             </div>
                         </form>
+
+                        @if(session('success'))
+                            <div class="mt-6 p-4 bg-green-900/30 border border-green-700 text-green-300 text-sm rounded">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -17,3 +17,5 @@ Route::get('/portfolio', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'send']);

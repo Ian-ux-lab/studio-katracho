@@ -60,7 +60,7 @@
                     <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-10 w-auto">
                     </a>
                     <p class="text-sm text-[#666666] leading-relaxed max-w-sm mt-4">
-                        Creación de contenido para redes sociales. Fotos, videos y estrategia digital para marcas que quieren destacar.
+                        Cubrimos eventos con fotografía y video, y creamos sesiones personalizadas para todo tipo de proyectos.
                     </p>
                 </div>
 
