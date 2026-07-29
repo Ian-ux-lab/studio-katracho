@@ -34,10 +34,10 @@
 
         <div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-0 z-40 bg-[#0A0A0A]">
             <div class="flex flex-col items-center justify-center h-full gap-8 px-6">
-                <a href="/" class="text-2xl font-medium {{ request()->is('/') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Inicio</a>
-                <a href="/about" class="text-2xl font-medium {{ request()->is('about') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Nosotros</a>
-                <a href="/portfolio" class="text-2xl font-medium {{ request()->is('portfolio') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Portafolio</a>
-                <a href="/contact" class="text-2xl font-medium {{ request()->is('contact') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Contacto</a>
+                <a href="/" class="text-2xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Inicio</a>
+                <a href="/about" class="text-2xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Nosotros</a>
+                <a href="/portfolio" class="text-2xl {{ request()->is('portfolio') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Portafolio</a>
+                <a href="/contact" class="text-2xl {{ request()->is('contact') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Contacto</a>
             </div>
         </div>
     </header>
