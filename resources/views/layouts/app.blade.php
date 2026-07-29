@@ -25,9 +25,9 @@
                     <a href="/contact" class="nav-link {{ request()->is('contact') ? 'active' : '' }}">Contacto</a>
                 </nav>
 
-                <button id="menu-toggle" class="md:hidden flex flex-col gap-1 p-2" aria-label="Menu">
-                    <span class="block w-5 h-px bg-[#111111] transition-all duration-300" id="bar1"></span>
-                    <span class="block w-3 h-px bg-[#111111] transition-all duration-300" id="bar2"></span>
+                <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+                    <span class="block w-6 h-[2px] bg-white transition-all duration-300" id="bar1"></span>
+                    <span class="block w-4 h-[2px] bg-white transition-all duration-300" id="bar2"></span>
                 </button>
             </div>
         </div>
@@ -77,16 +77,15 @@
                 <div class="md:col-span-5">
                     <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-5">Contacto</h4>
                     <div class="flex flex-col gap-3">
-                        <span class="text-sm text-[#666666]">hola@studiokatracho.com</span>
-                        <span class="text-sm text-[#666666]">+504 9999-0000</span>
-                        <span class="text-sm text-[#666666]">Tegucigalpa, Honduras</span>
+                        <span class="text-sm text-[#666666]">fa2288050@gmail.com</span>
+                        <span class="text-sm text-[#666666]">Juticalpa y Catacamas, Olancho</span>
                     </div>
                     <div class="flex gap-3 mt-6">
-                        <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
+                        <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
                         <span class="text-[#333333]">/</span>
-                        <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">TikTok</a>
+                        <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Facebook</a>
                         <span class="text-[#333333]">/</span>
-                        <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
+                        <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
                     </div>
                 </div>
             </div>
@@ -113,10 +112,10 @@
         menuToggle.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
             bar1.classList.toggle('rotate-45');
-            bar1.classList.toggle('translate-y-[4px]');
+            bar1.classList.toggle('translate-y-[5px]');
             bar2.classList.toggle('-rotate-45');
-            bar2.classList.toggle('-translate-y-[0.5px]');
-            bar2.classList.toggle('w-5');
+            bar2.classList.toggle('-translate-y-[5px]');
+            bar2.classList.toggle('w-6');
         });
 
         window.addEventListener('scroll', function() {

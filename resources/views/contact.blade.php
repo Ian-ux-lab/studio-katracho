@@ -20,24 +20,20 @@
                     <div class="space-y-8">
                         <div>
                             <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-2">Email</p>
-                            <p class="text-sm text-white">hola@studiokatracho.com</p>
-                        </div>
-                        <div>
-                            <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-2">Teléfono</p>
-                            <p class="text-sm text-white">+504 9999-0000</p>
+                            <p class="text-sm text-white">fa2288050@gmail.com</p>
                         </div>
                         <div>
                             <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-2">Ubicación</p>
-                            <p class="text-sm text-white">Tegucigalpa, Honduras</p>
+                            <p class="text-sm text-white">Juticalpa y Catacamas, Olancho</p>
                         </div>
                     </div>
 
                     <div class="mt-10 pt-8 border-t border-[#1A1A1A]">
                         <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-4">Redes</p>
                         <div class="flex gap-4">
-                            <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
-                            <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">TikTok</a>
-                            <a href="#" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
+                            <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
+                            <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Facebook</a>
+                            <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
                         </div>
                     </div>
                 </div>
