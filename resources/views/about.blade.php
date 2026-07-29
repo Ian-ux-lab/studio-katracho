@@ -16,8 +16,8 @@
     <section class="pb-24 lg:pb-32">
         <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="aspect-[4/3] bg-[#111111] border border-[#1A1A1A] overflow-hidden">
-                    <img src="{{ asset('img/equipo studio/sony.webp') }}" alt="Studio Katracho" class="w-full h-full object-cover">
+                <div class="hero-img-wrap aspect-[4/3] bg-[#111111]">
+                    <img src="{{ asset('img/equipo studio/sony.webp') }}" alt="Studio Katracho">
                 </div>
                 <div>
                     <div class="section-label">Nuestra historia</div>
