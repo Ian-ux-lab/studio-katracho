@@ -32,12 +32,12 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-x-0 top-24 bottom-0 z-40 bg-[#0A0A0A]">
-            <div class="flex flex-col items-center justify-center h-full gap-8 px-6">
-                <a href="/" class="text-2xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Inicio</a>
-                <a href="/about" class="text-2xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Nosotros</a>
-                <a href="/portfolio" class="text-2xl {{ request()->is('portfolio') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Portafolio</a>
-                <a href="/contact" class="text-2xl {{ request()->is('contact') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Contacto</a>
+        <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-24 bottom-0 z-40 bg-[#0A0A0A] overflow-y-auto" style="display:none;animation-fill-mode:forwards">
+            <div class="flex flex-col items-center justify-center min-h-full gap-10 px-6 py-12">
+                <a href="/" class="text-2xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Inicio</a>
+                <a href="/about" class="text-2xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Nosotros</a>
+                <a href="/portfolio" class="text-2xl {{ request()->is('portfolio') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Portafolio</a>
+                <a href="/contact" class="text-2xl {{ request()->is('contact') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Contacto</a>
             </div>
         </div>
     </header>
@@ -93,21 +93,25 @@
         const navbar = document.getElementById('navbar');
 
         function openMenu() {
-            mobileMenu.classList.remove('hidden');
+            mobileMenu.style.display = '';
+            mobileMenu.style.animation = 'slideDown 0.3s ease forwards';
             document.body.style.overflow = 'hidden';
             bar1.classList.add('rotate-45', 'translate-y-[5px]');
             bar2.classList.add('-rotate-45', '-translate-y-[5px]', 'w-6');
         }
 
         function closeMenu() {
-            mobileMenu.classList.add('hidden');
+            mobileMenu.style.animation = 'slideUp 0.2s ease forwards';
+            setTimeout(function() {
+                mobileMenu.style.display = 'none';
+            }, 200);
             document.body.style.overflow = '';
             bar1.classList.remove('rotate-45', 'translate-y-[5px]');
             bar2.classList.remove('-rotate-45', '-translate-y-[5px]', 'w-6');
         }
 
         menuToggle.addEventListener('click', function() {
-            if (mobileMenu.classList.contains('hidden')) {
+            if (mobileMenu.style.display === 'none') {
                 openMenu();
             } else {
                 closeMenu();
