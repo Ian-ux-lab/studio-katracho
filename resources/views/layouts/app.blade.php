@@ -25,22 +25,29 @@
                     <a href="/contact" class="nav-link {{ request()->is('contact') ? 'active' : '' }} text-base lg:text-lg">Contacto</a>
                 </nav>
 
-                <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+                <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 z-[60] relative" aria-label="Menu">
                     <span class="block w-6 h-[2px] bg-white transition-all duration-300" id="bar1"></span>
                     <span class="block w-4 h-[2px] bg-white transition-all duration-300" id="bar2"></span>
                 </button>
             </div>
         </div>
-
-        <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-24 bottom-0 z-40 bg-[#0A0A0A] overflow-y-auto" style="display:none;animation-fill-mode:forwards">
-            <div class="flex flex-col items-center justify-center min-h-full gap-10 px-6 py-12">
-                <a href="/" class="text-2xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Inicio</a>
-                <a href="/about" class="text-2xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Nosotros</a>
-                <a href="/portfolio" class="text-2xl {{ request()->is('portfolio') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Portafolio</a>
-                <a href="/contact" class="text-2xl {{ request()->is('contact') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Contacto</a>
-            </div>
-        </div>
     </header>
+
+    <div id="mobile-overlay" class="md:hidden fixed inset-0 z-[70] bg-black/60" style="display:none"></div>
+    <div id="mobile-menu" class="md:hidden fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] z-[80] bg-[#0A0A0A]" style="display:none;transform:translateX(100%)">
+        <div class="flex items-center justify-between px-6 h-24 border-b border-[#1A1A1A]">
+            <span class="text-sm font-medium tracking-wider uppercase text-[#666666]">Menú</span>
+            <button id="menu-close" class="text-white/60 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="flex flex-col gap-6 px-6 py-12">
+            <a href="/" class="text-xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Inicio</a>
+            <a href="/about" class="text-xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Nosotros</a>
+            <a href="/portfolio" class="text-xl {{ request()->is('portfolio') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Portafolio</a>
+            <a href="/contact" class="text-xl {{ request()->is('contact') ? 'font-semibold text-white' : 'font-medium text-white/60 hover:text-white' }} transition-all duration-300">Contacto</a>
+        </div>
+    </div>
 
     <main>
         @yield('content')
@@ -87,24 +94,30 @@
 
     <script>
         const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
         const bar1 = document.getElementById('bar1');
         const bar2 = document.getElementById('bar2');
         const navbar = document.getElementById('navbar');
 
         function openMenu() {
+            mobileOverlay.style.display = '';
             mobileMenu.style.display = '';
-            mobileMenu.style.animation = 'slideDown 0.3s ease forwards';
+            mobileOverlay.style.animation = 'fadeIn 0.25s ease forwards';
+            mobileMenu.style.animation = 'slideInRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
             document.body.style.overflow = 'hidden';
             bar1.classList.add('rotate-45', 'translate-y-[5px]');
             bar2.classList.add('-rotate-45', '-translate-y-[5px]', 'w-6');
         }
 
         function closeMenu() {
-            mobileMenu.style.animation = 'slideUp 0.2s ease forwards';
+            mobileOverlay.style.animation = 'fadeOut 0.2s ease forwards';
+            mobileMenu.style.animation = 'slideOutRight 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
             setTimeout(function() {
+                mobileOverlay.style.display = 'none';
                 mobileMenu.style.display = 'none';
-            }, 200);
+            }, 250);
             document.body.style.overflow = '';
             bar1.classList.remove('rotate-45', 'translate-y-[5px]');
             bar2.classList.remove('-rotate-45', '-translate-y-[5px]', 'w-6');
@@ -118,6 +131,8 @@
             }
         });
 
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
         mobileMenu.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', closeMenu);
         });
