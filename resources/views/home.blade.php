@@ -15,7 +15,7 @@
                     </h1>
 
                     <p class="text-body-lg max-w-md mb-10 fade-in fade-in-delay-2">
-                        Cubrimos eventos con fotografía y video, y creamos sesiones personalizadas para todo tipo de proyectos.
+                        Cubrimos eventos con fotografía y video, creamos sesiones personalizadas y contenido para marcas.
                     </p>
 
                     <div class="flex flex-wrap gap-4 fade-in fade-in-delay-3">

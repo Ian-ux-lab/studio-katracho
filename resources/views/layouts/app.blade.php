@@ -60,7 +60,7 @@
                     <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-10 w-auto">
                     </a>
                     <p class="text-sm text-[#666666] leading-relaxed max-w-sm mt-4">
-                        Cubrimos eventos con fotografía y video, y creamos sesiones personalizadas para todo tipo de proyectos.
+                        Cubrimos eventos con fotografía y video, creamos sesiones personalizadas y contenido para marcas.
                     </p>
                 </div>
 

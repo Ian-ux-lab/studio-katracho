@@ -8,7 +8,7 @@
             <div class="max-w-2xl">
                 <div class="section-label">Nosotros</div>
                 <h1 class="heading-xl mb-4">Quiénes somos</h1>
-                <p class="text-body-lg">Cubrimos eventos, sesiones fotográficas, producción de video y contenido para todo tipo de proyectos.</p>
+                <p class="text-body-lg">Cubrimos eventos, sesiones fotográficas, producción de video y creación de contenido para marcas.</p>
             </div>
         </div>
     </section>
@@ -22,7 +22,7 @@
                 <div>
                     <div class="section-label">Nuestra historia</div>
                     <h2 class="heading-lg mb-6">Creamos contenido que conecta</h2>
-                    <p class="text-body mb-5">Studio Katracho nació con la misión de capturar momentos y contar historias a través de contenido visual impactante. Cubrimos eventos con fotografía y video, realizamos sesiones de todo tipo y creamos contenido para marcas y proyectos.</p>
+                    <p class="text-body mb-5">Studio Katracho nació con la misión de capturar momentos y contar historias a través de contenido visual impactante. Cubrimos eventos con fotografía y video, realizamos sesiones de todo tipo y creamos contenido para marcas.</p>
                     <p class="text-body mb-8">Creemos que cada proyecto tiene una historia única, y nuestro trabajo es darle forma visual para que conecte de manera auténtica con su audiencia.</p>
                     <div class="flex gap-10">
                         <div>
