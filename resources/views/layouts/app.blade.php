@@ -32,15 +32,12 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-[#0A0A0A] border-t border-[#1A1A1A]">
-            <div class="px-6 py-8 flex flex-col gap-6">
-                <a href="/" class="text-base font-medium text-white">Inicio</a>
-                <a href="/about" class="text-base text-[#666666] hover:text-white transition-colors">Nosotros</a>
-                <a href="/portfolio" class="text-base text-[#666666] hover:text-white transition-colors">Portafolio</a>
-                <a href="/contact" class="text-base text-[#666666] hover:text-white transition-colors">Contacto</a>
-                <div class="pt-4 border-t border-[#1A1A1A]">
-                    <a href="/contact" class="btn-primary text-xs">Contacto</a>
-                </div>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-0 z-40 bg-[#0A0A0A]">
+            <div class="flex flex-col items-center justify-center h-full gap-8 px-6">
+                <a href="/" class="text-2xl font-medium {{ request()->is('/') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Inicio</a>
+                <a href="/about" class="text-2xl font-medium {{ request()->is('about') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Nosotros</a>
+                <a href="/portfolio" class="text-2xl font-medium {{ request()->is('portfolio') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Portafolio</a>
+                <a href="/contact" class="text-2xl font-medium {{ request()->is('contact') ? 'text-white' : 'text-[#666666] hover:text-white' }} transition-colors">Contacto</a>
             </div>
         </div>
     </header>
@@ -60,17 +57,6 @@
                         Cubrimos eventos con fotografía y video, creamos sesiones personalizadas y contenido para marcas.
                     </p>
                 </div>
-
-                <div class="md:col-span-2 md:col-start-7">
-                    <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-5">Navegación</h4>
-                    <div class="flex flex-col gap-3">
-                        <a href="/" class="text-sm text-[#666666] hover:text-white transition-colors">Inicio</a>
-                        <a href="/about" class="text-sm text-[#666666] hover:text-white transition-colors">Nosotros</a>
-                        <a href="/portfolio" class="text-sm text-[#666666] hover:text-white transition-colors">Portafolio</a>
-                        <a href="/contact" class="text-sm text-[#666666] hover:text-white transition-colors">Contacto</a>
-                    </div>
-                </div>
-
                 <div class="md:col-span-5">
                     <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-5">Contacto</h4>
                     <div class="flex flex-col gap-3">
@@ -106,13 +92,30 @@
         const bar2 = document.getElementById('bar2');
         const navbar = document.getElementById('navbar');
 
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            bar1.classList.add('rotate-45', 'translate-y-[5px]');
+            bar2.classList.add('-rotate-45', '-translate-y-[5px]', 'w-6');
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+            bar1.classList.remove('rotate-45', 'translate-y-[5px]');
+            bar2.classList.remove('-rotate-45', '-translate-y-[5px]', 'w-6');
+        }
+
         menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            bar1.classList.toggle('rotate-45');
-            bar1.classList.toggle('translate-y-[5px]');
-            bar2.classList.toggle('-rotate-45');
-            bar2.classList.toggle('-translate-y-[5px]');
-            bar2.classList.toggle('w-6');
+            if (mobileMenu.classList.contains('hidden')) {
+                openMenu();
+            } else {
+                closeMenu();
+            }
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', closeMenu);
         });
 
         window.addEventListener('scroll', function() {
