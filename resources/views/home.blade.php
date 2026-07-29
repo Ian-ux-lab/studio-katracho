@@ -30,11 +30,11 @@
                 </div>
 
                 <div class="hidden lg:grid grid-cols-2 gap-6">
-                    <div class="overflow-hidden border border-[#1A1A1A]">
-                        <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio" class="w-full h-full object-cover">
+                    <div class="hero-img-wrap">
+                        <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio">
                     </div>
-                    <div class="overflow-hidden border border-[#1A1A1A]">
-                        <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda" class="w-full h-full object-cover">
+                    <div class="hero-img-wrap">
+                        <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda">
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <p class="text-sm text-[#666666] max-w-md mx-auto mb-10">
                 Cuéntanos sobre tu proyecto o evento y te ayudamos a crear el contenido visual perfecto.
             </p>
-            <a href="/contact" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0A0A0A] text-white text-xs font-medium tracking-wider uppercase hover:bg-[#222222] transition-colors duration-300">
+            <a href="/contact" class="btn-dark">
                 Empezar
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
