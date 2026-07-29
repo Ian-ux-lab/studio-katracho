@@ -5,7 +5,7 @@
 @section('content')
     <section class="min-h-screen flex items-center">
         <div class="max-w-[1200px] mx-auto px-6 lg:px-12 w-full py-32">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 items-center">
                 <div>
                     <div class="section-label fade-in">Creación de contenido</div>
 
@@ -30,12 +30,12 @@
                 </div>
 
                 <div class="hidden lg:block">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="aspect-[4/5] overflow-hidden border border-[#1A1A1A]">
-                            <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio" class="w-full h-full object-cover">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="aspect-[3/4] overflow-hidden border border-[#1A1A1A]">
+                            <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio" class="w-full h-full object-cover scale-110">
                         </div>
-                        <div class="aspect-[4/5] overflow-hidden border border-[#1A1A1A] mt-12">
-                            <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda" class="w-full h-full object-cover">
+                        <div class="aspect-[3/4] overflow-hidden border border-[#1A1A1A] mt-16">
+                            <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda" class="w-full h-full object-cover scale-110">
                         </div>
                     </div>
                 </div>
