@@ -312,3 +312,33 @@
         padding-bottom: 5rem;
     }
 }
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 1.0625rem;
+    }
+    .nav-link {
+        font-size: 0.9375rem;
+    }
+    .section-label {
+        font-size: 0.8125rem;
+    }
+    .text-body {
+        font-size: 1.0625rem;
+    }
+    .text-body-lg {
+        font-size: 1.1875rem;
+    }
+    .text-sm {
+        font-size: 0.9375rem;
+    }
+    .text-xs {
+        font-size: 0.8125rem;
+    }
+    .text-base {
+        font-size: 1.0625rem;
+    }
+    .filter-btn {
+        font-size: 0.75rem !important;
+    }
+}
