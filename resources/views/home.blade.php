@@ -29,11 +29,11 @@
                     </div>
                 </div>
 
-                <div class="hidden lg:flex flex-col gap-6">
-                    <div class="flex-1 overflow-hidden border border-[#1A1A1A]">
+                <div class="hidden lg:grid grid-cols-2 gap-6">
+                    <div class="overflow-hidden border border-[#1A1A1A]">
                         <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio" class="w-full h-full object-cover">
                     </div>
-                    <div class="flex-1 overflow-hidden border border-[#1A1A1A]">
+                    <div class="overflow-hidden border border-[#1A1A1A]">
                         <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda" class="w-full h-full object-cover">
                     </div>
                 </div>
