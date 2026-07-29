@@ -13,16 +13,16 @@
 
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-24 lg:h-28">
                 <a href="/" class="flex items-center gap-2">
-                    <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-12 w-auto">
+                    <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-14 lg:h-16 w-auto">
                 </a>
 
-                <nav class="hidden md:flex items-center gap-10">
-                    <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                    <a href="/about" class="nav-link {{ request()->is('about') ? 'active' : '' }}">Nosotros</a>
-                    <a href="/portfolio" class="nav-link {{ request()->is('portfolio') ? 'active' : '' }}">Portafolio</a>
-                    <a href="/contact" class="nav-link {{ request()->is('contact') ? 'active' : '' }}">Contacto</a>
+                <nav class="hidden md:flex items-center gap-12 lg:gap-16">
+                    <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }} text-base lg:text-lg">Inicio</a>
+                    <a href="/about" class="nav-link {{ request()->is('about') ? 'active' : '' }} text-base lg:text-lg">Nosotros</a>
+                    <a href="/portfolio" class="nav-link {{ request()->is('portfolio') ? 'active' : '' }} text-base lg:text-lg">Portafolio</a>
+                    <a href="/contact" class="nav-link {{ request()->is('contact') ? 'active' : '' }} text-base lg:text-lg">Contacto</a>
                 </nav>
 
                 <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
@@ -33,14 +33,14 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-[#0A0A0A] border-t border-[#1A1A1A]">
-            <div class="px-6 py-6 flex flex-col gap-5">
-                <a href="/" class="flex items-center gap-2 mb-2">
-                    <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-10 w-auto">
+            <div class="px-6 py-8 flex flex-col gap-6">
+                <a href="/" class="flex items-center gap-2 mb-4">
+                    <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-14 w-auto">
                 </a>
-                <a href="/" class="text-sm font-medium text-white">Inicio</a>
-                <a href="/about" class="text-sm text-[#666666] hover:text-white transition-colors">Nosotros</a>
-                <a href="/portfolio" class="text-sm text-[#666666] hover:text-white transition-colors">Portafolio</a>
-                <a href="/contact" class="text-sm text-[#666666] hover:text-white transition-colors">Contacto</a>
+                <a href="/" class="text-base font-medium text-white">Inicio</a>
+                <a href="/about" class="text-base text-[#666666] hover:text-white transition-colors">Nosotros</a>
+                <a href="/portfolio" class="text-base text-[#666666] hover:text-white transition-colors">Portafolio</a>
+                <a href="/contact" class="text-base text-[#666666] hover:text-white transition-colors">Contacto</a>
                 <div class="pt-4 border-t border-[#1A1A1A]">
                     <a href="/contact" class="btn-primary text-xs">Contacto</a>
                 </div>
