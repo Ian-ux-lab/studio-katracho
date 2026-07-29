@@ -5,7 +5,7 @@
 @section('content')
     <section class="min-h-screen flex items-center">
         <div class="max-w-[1200px] mx-auto px-6 lg:px-12 w-full py-32">
-            <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16">
                 <div class="flex flex-col justify-center">
                     <div class="section-label fade-in">Creación de contenido</div>
 
