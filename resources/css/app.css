@@ -283,38 +283,43 @@
 
 @media (max-width: 768px) {
     body {
-        font-size: 1rem;
-    }
-    .heading-xl {
-        font-size: 2.25rem;
-    }
-    .heading-lg {
-        font-size: 1.75rem;
-    }
-    .text-body {
-        font-size: 1rem;
-    }
-    .text-body-lg {
         font-size: 1.125rem;
     }
+    .heading-xl {
+        font-size: 2.75rem;
+    }
+    .heading-lg {
+        font-size: 2rem;
+    }
+    .text-body {
+        font-size: 1.125rem;
+    }
+    .text-body-lg {
+        font-size: 1.25rem;
+    }
     .text-sm {
-        font-size: 0.9375rem;
-    }
-    .text-xs {
-        font-size: 0.8125rem;
-    }
-    .text-base {
         font-size: 1.0625rem;
     }
+    .text-xs {
+        font-size: 0.9375rem;
+    }
+    .text-base {
+        font-size: 1.1875rem;
+    }
     .btn-primary, .btn-outline {
-        padding: 0.75rem 1.5rem;
+        padding: 0.875rem 1.75rem;
+        font-size: 0.875rem;
     }
     .section-label {
-        font-size: 0.7rem;
+        font-size: 0.8125rem;
         margin-bottom: 1rem;
     }
     .nav-link {
-        font-size: 0.9375rem;
+        font-size: 1.0625rem;
+    }
+    .filter-btn {
+        font-size: 0.8125rem !important;
+        padding: 0.625rem 1rem !important;
     }
     #album-modal img {
         max-height: 80vh;
