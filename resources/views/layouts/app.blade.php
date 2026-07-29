@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-0 z-40 bg-[#0A0A0A]">
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-x-0 top-24 bottom-0 z-40 bg-[#0A0A0A]">
             <div class="flex flex-col items-center justify-center h-full gap-8 px-6">
                 <a href="/" class="text-2xl {{ request()->is('/') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Inicio</a>
                 <a href="/about" class="text-2xl {{ request()->is('about') ? 'font-semibold text-white' : 'font-medium text-white/70' }} transition-colors">Nosotros</a>
