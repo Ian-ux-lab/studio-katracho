@@ -30,44 +30,14 @@
                 </div>
 
                 <div class="hidden lg:block">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="aspect-[3/4] overflow-hidden border border-[#1A1A1A]">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="aspect-[4/5] overflow-hidden border border-[#1A1A1A]">
                             <img src="{{ asset('img/sesiones studio/1.webp') }}" alt="Sesión de estudio" class="w-full h-full object-cover">
                         </div>
-                        <div class="aspect-[3/4] overflow-hidden border border-[#1A1A1A] mt-8">
+                        <div class="aspect-[4/5] overflow-hidden border border-[#1A1A1A] mt-12">
                             <img src="{{ asset('img/boda/IAN00385-Mejorado-NR.webp') }}" alt="Boda" class="w-full h-full object-cover">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 lg:py-32 border-t border-[#1A1A1A]">
-        <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-px bg-transparent md:bg-[#1A1A1A]">
-                <div class="bg-[#0A0A0A] p-8 lg:p-10 group hover:bg-[#111111] transition-colors duration-300">
-                    <span class="text-[0.6rem] font-medium tracking-[0.2em] uppercase text-[#333333] mb-6 block">01</span>
-                    <h3 class="text-lg font-semibold mb-3">Contenido para redes</h3>
-                    <p class="text-sm text-[#666666] leading-relaxed">
-                        Creamos contenido estratégico para Instagram, TikTok, YouTube y otras plataformas que genera engagement.
-                    </p>
-                </div>
-
-                <div class="bg-[#0A0A0A] p-8 lg:p-10 group hover:bg-[#111111] transition-colors duration-300">
-                    <span class="text-[0.6rem] font-medium tracking-[0.2em] uppercase text-[#333333] mb-6 block">02</span>
-                    <h3 class="text-lg font-semibold mb-3">Fotografía</h3>
-                    <p class="text-sm text-[#666666] leading-relaxed">
-                        Sesiones fotográficas profesionales para productos, retratos, eventos y contenido editorial.
-                    </p>
-                </div>
-
-                <div class="bg-[#0A0A0A] p-8 lg:p-10 group hover:bg-[#111111] transition-colors duration-300">
-                    <span class="text-[0.6rem] font-medium tracking-[0.2em] uppercase text-[#333333] mb-6 block">03</span>
-                    <h3 class="text-lg font-semibold mb-3">Producción de video</h3>
-                    <p class="text-sm text-[#666666] leading-relaxed">
-                        Videos cortos, reels, TikToks, comerciales y contenido audiovisual que cuenta historias.
-                    </p>
                 </div>
             </div>
         </div>
