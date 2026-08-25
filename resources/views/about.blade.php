@@ -27,11 +27,11 @@
                     <div class="flex gap-10">
                         <div>
                             <div class="stat-number text-3xl mb-1">6+</div>
-                            <p class="text-xs text-[#666666]">Proyectos</p>
+                            <p class="text-xs text-white/60">Proyectos</p>
                         </div>
                         <div>
                             <div class="stat-number text-3xl mb-1">3+</div>
-                            <p class="text-xs text-[#666666]">Años</p>
+                            <p class="text-xs text-white/60">Años</p>
                         </div>
                     </div>
                 </div>

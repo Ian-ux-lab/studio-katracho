@@ -60,33 +60,33 @@
                     <a href="/" class="flex items-center gap-2 mb-4 inline-block">
                     <img src="{{ asset('img/logo studio.webp') }}" alt="Studio Katracho" class="h-10 w-auto">
                     </a>
-                    <p class="text-sm text-[#666666] leading-relaxed max-w-sm mt-4">
+                    <p class="text-sm text-white/70 leading-relaxed max-w-sm mt-4">
                         Cubrimos eventos con fotografía y video, creamos sesiones personalizadas y contenido para marcas.
                     </p>
                 </div>
                 <div class="md:col-span-5">
-                    <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-5">Contacto</h4>
+                    <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-5">Contacto</h4>
                     <div class="flex flex-col gap-3">
-                        <span class="text-sm text-[#666666]">fa2288050@gmail.com</span>
-                        <span class="text-sm text-[#666666]">Juticalpa y Catacamas, Olancho</span>
+                        <span class="text-sm text-white/80">fa2288050@gmail.com</span>
+                        <span class="text-sm text-white/80">Juticalpa y Catacamas, Olancho</span>
                     </div>
                     <div class="flex gap-3 mt-6">
-                        <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
-                        <span class="text-[#333333]">/</span>
-                        <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Facebook</a>
-                        <span class="text-[#333333]">/</span>
-                        <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
+                        <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">Instagram</a>
+                        <span class="text-white/30">/</span>
+                        <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">Facebook</a>
+                        <span class="text-white/30">/</span>
+                        <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">YouTube</a>
                     </div>
                 </div>
             </div>
 
             <div class="py-6 border-t border-[#1A1A1A] flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-xs text-[#333333]">
+                <p class="text-xs text-white/50">
                     &copy; {{ date('Y') }} Studio Katracho. Todos los derechos reservados.
                 </p>
                 <div class="flex items-center gap-6">
-                    <a href="#" class="text-xs text-[#333333] hover:text-white transition-colors">Privacidad</a>
-                    <a href="#" class="text-xs text-[#333333] hover:text-white transition-colors">Términos</a>
+                    <a href="#" class="text-xs text-white/50 hover:text-white transition-colors">Privacidad</a>
+                    <a href="#" class="text-xs text-white/50 hover:text-white transition-colors">Términos</a>
                 </div>
             </div>
         </div>

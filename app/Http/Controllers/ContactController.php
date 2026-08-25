@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -17,8 +18,27 @@ class ContactController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        Mail::to('fa2288050@gmail.com')->send(new ContactMail($validated));
+        $serviceMap = [
+            'sesion-fotografica' => 'Sesión Fotográfica',
+            'cobertura-evento' => 'Cobertura de Evento',
+            'produccion-video' => 'Producción de Video',
+            'contenido-redes' => 'Contenido para Redes Sociales',
+            'otro' => 'Otro Servicio / Consulta General',
+        ];
 
-        return back()->with('success', '¡Mensaje enviado! Te contactaremos pronto.');
+        $validated['service_label'] = $serviceMap[$validated['service']] ?? ucfirst($validated['service']);
+        $validated['date'] = now()->setTimezone('America/Tegucigalpa')->format('d/m/Y h:i A');
+
+        try {
+            Mail::to('fa2288050@gmail.com')->send(new ContactMail($validated));
+
+            return back()->with('success', '¡Mensaje enviado con éxito! Te responderemos muy pronto a tu correo.');
+        } catch (\Exception $e) {
+            Log::error('Error al enviar correo de contacto: ' . $e->getMessage());
+
+            return back()
+                ->with('error', 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a fa2288050@gmail.com')
+                ->withInput();
+        }
     }
 }

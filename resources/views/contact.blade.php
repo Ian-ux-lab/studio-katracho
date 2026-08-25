@@ -19,21 +19,21 @@
                 <div class="lg:col-span-4">
                     <div class="space-y-8">
                         <div>
-                            <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-2">Email</p>
+                            <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-2">Email</p>
                             <p class="text-sm text-white">fa2288050@gmail.com</p>
                         </div>
                         <div>
-                            <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-2">Ubicación</p>
+                            <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-2">Ubicación</p>
                             <p class="text-sm text-white">Juticalpa y Catacamas, Olancho</p>
                         </div>
                     </div>
 
                     <div class="mt-10 pt-8 border-t border-[#1A1A1A]">
-                        <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-[#666666] mb-4">Redes</p>
+                        <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-4">Redes</p>
                         <div class="flex gap-4">
-                            <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Instagram</a>
-                            <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">Facebook</a>
-                            <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-[#444444] hover:text-white transition-colors">YouTube</a>
+                            <a href="https://www.instagram.com/studio_katracho/" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">Instagram</a>
+                            <a href="https://www.facebook.com/share/1LHM88HzEH/" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">Facebook</a>
+                            <a href="https://www.youtube.com/@Francoa-le5br" target="_blank" class="text-xs text-white/70 hover:text-white transition-colors">YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -44,34 +44,34 @@
                             @csrf
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Nombre</label>
-                                    <input type="text" name="name" class="input-field" placeholder="Tu nombre" required>
+                                    <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-white/70 mb-2">Nombre</label>
+                                    <input type="text" name="name" value="{{ old('name') }}" class="input-field" placeholder="Tu nombre" required>
                                 </div>
                                 <div>
-                                    <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Email</label>
-                                    <input type="email" name="email" class="input-field" placeholder="tu@email.com" required>
+                                    <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-white/70 mb-2">Email</label>
+                                    <input type="email" name="email" value="{{ old('email') }}" class="input-field" placeholder="tu@email.com" required>
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">¿Qué necesitas?</label>
+                                <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-white/70 mb-2">¿Qué necesitas?</label>
                                 <select name="service" class="input-field appearance-none cursor-pointer" required>
                                     <option value="">Selecciona un servicio</option>
-                                    <option value="sesion-fotografica">Sesión fotográfica</option>
-                                    <option value="cobertura-evento">Cobertura de evento</option>
-                                    <option value="produccion-video">Producción de video</option>
-                                    <option value="contenido-redes">Contenido para redes</option>
-                                    <option value="otro">Otro</option>
+                                    <option value="sesion-fotografica" {{ old('service') == 'sesion-fotografica' ? 'selected' : '' }}>Sesión fotográfica</option>
+                                    <option value="cobertura-evento" {{ old('service') == 'cobertura-evento' ? 'selected' : '' }}>Cobertura de evento</option>
+                                    <option value="produccion-video" {{ old('service') == 'produccion-video' ? 'selected' : '' }}>Producción de video</option>
+                                    <option value="contenido-redes" {{ old('service') == 'contenido-redes' ? 'selected' : '' }}>Contenido para redes</option>
+                                    <option value="otro" {{ old('service') == 'otro' ? 'selected' : '' }}>Otro</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-[#666666] mb-2">Mensaje</label>
-                                <textarea name="message" rows="5" class="input-field resize-none" placeholder="Cuéntanos sobre tu proyecto o evento y lo que necesitas..." required></textarea>
+                                <label class="block text-[0.65rem] font-medium tracking-[0.1em] uppercase text-white/70 mb-2">Mensaje</label>
+                                <textarea name="message" rows="5" class="input-field resize-none" placeholder="Cuéntanos sobre tu proyecto o evento y lo que necesitas..." required>{{ old('message') }}</textarea>
                             </div>
 
                             <div class="flex items-center justify-between pt-2">
-                                <p class="text-xs text-[#333333]">Respondemos en menos de 24h</p>
+                                <p class="text-xs text-white/50">Respondemos en menos de 24h</p>
                                 <button type="submit" class="btn-primary">
                                     Enviar
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -82,6 +82,12 @@
                         @if(session('success'))
                             <div class="mt-6 p-4 bg-green-900/30 border border-green-700 text-green-300 text-sm rounded">
                                 {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="mt-6 p-4 bg-red-900/30 border border-red-700 text-red-300 text-sm rounded">
+                                {{ session('error') }}
                             </div>
                         @endif
                     </div>
