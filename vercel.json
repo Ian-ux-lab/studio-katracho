@@ -30,7 +30,7 @@
   "env": {
     "APP_NAME": "Studio Katracho",
     "APP_ENV": "production",
-    "APP_DEBUG": "false",
+    "APP_DEBUG": "true",
     "APP_KEY": "base64:sZfaavb05fVUEkG58Cb6Dee5Df002+lJx+xC56hG6RI=",
     "APP_STORAGE": "/tmp/storage",
     "APP_SERVICES_CACHE": "/tmp/storage/bootstrap/cache/services.php",
