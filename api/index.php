@@ -43,11 +43,9 @@ $envVars = [
 ];
 
 foreach ($envVars as $key => $val) {
-    if (!getenv($key)) {
-        putenv("{$key}={$val}");
-    }
-    $_ENV[$key] = $_ENV[$key] ?? $val;
-    $_SERVER[$key] = $_SERVER[$key] ?? $val;
+    putenv("{$key}={$val}");
+    $_ENV[$key] = $val;
+    $_SERVER[$key] = $val;
 }
 
 // 3. Emular mod_rewrite para el servidor integrado de PHP en Vercel
