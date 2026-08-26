@@ -18,10 +18,16 @@ $app = Application::configure(basePath: dirname(__DIR__))
     })->create();
 
 // Ajustar rutas de almacenamiento dinámicas para entornos Serverless como Vercel
-if (getenv('APP_STORAGE')) {
-    $app->useStoragePath(getenv('APP_STORAGE'));
-} elseif (isset($_SERVER['VERCEL']) || getenv('VERCEL')) {
-    $app->useStoragePath('/tmp/storage');
+$storagePath = getenv('APP_STORAGE') ?: ((isset($_SERVER['VERCEL']) || getenv('VERCEL')) ? '/tmp/storage' : null);
+
+if ($storagePath) {
+    $app->useStoragePath($storagePath);
+    foreach (['framework/views', 'framework/cache/data', 'framework/sessions', 'logs', 'app/public'] as $sub) {
+        $dir = $storagePath . '/' . $sub;
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+    }
 }
 
 return $app;
