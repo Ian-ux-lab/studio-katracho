@@ -210,7 +210,7 @@
                 </div>
             </div>
 
-            <!-- Vista Lightbox Individual Fullscreen -->
+            <!-- Vista Lightbox Individual Fullscreen con Zoom en PC -->
             <div id="modal-lightbox-view" class="hidden relative flex items-center justify-center bg-black/95 select-none overflow-hidden min-h-[380px] sm:min-h-[480px] lg:min-h-[540px]">
                 <!-- Flecha Anterior -->
                 <button onclick="prevLightboxImage()" class="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/60 hover:bg-white text-white hover:text-black border border-white/20 flex items-center justify-center transition-all duration-300 shadow-xl" aria-label="Foto anterior">
@@ -219,12 +219,18 @@
                     </svg>
                 </button>
 
-                <!-- Contenedor de la Imagen Principal -->
-                <div class="w-full h-full flex items-center justify-center p-4 sm:p-6">
-                    <div id="lightbox-spinner" class="absolute flex items-center justify-center">
+                <!-- Contenedor de la Imagen Principal con Zoom Interactivo -->
+                <div id="lightbox-img-container" class="w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden relative" onmousemove="handleImageMouseMove(event)">
+                    <div id="lightbox-spinner" class="absolute flex items-center justify-center pointer-events-none">
                         <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                     </div>
-                    <img id="lightbox-img" src="" alt="Fotografía del álbum" class="max-w-full max-h-[72vh] object-contain rounded transition-opacity duration-300 opacity-0" decoding="async">
+                    <img id="lightbox-img" src="" alt="Fotografía del álbum" class="max-w-full max-h-[72vh] object-contain rounded transition-all duration-300 opacity-0 md:cursor-zoom-in" decoding="async" onclick="toggleImageZoom(event)">
+                </div>
+
+                <!-- Indicador de Zoom (Solo visible en Desktop/PC) -->
+                <div id="lightbox-zoom-hint" class="hidden md:flex items-center gap-1.5 absolute top-4 right-4 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/10 rounded-full text-[0.68rem] font-medium text-white/80 z-30 pointer-events-none transition-all">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                    <span>Clic para ampliar</span>
                 </div>
 
                 <!-- Flecha Siguiente -->
@@ -235,7 +241,7 @@
                 </button>
 
                 <!-- Contador inferior minimalista -->
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/10 rounded-full text-[0.7rem] font-medium text-white/90 z-30">
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/10 rounded-full text-[0.7rem] font-medium text-white/90 z-30 pointer-events-none">
                     <span id="lightbox-counter">1 / 5</span>
                 </div>
             </div>
@@ -256,6 +262,68 @@
         var currentAlbum = null;
         var currentPhotoIndex = 0;
         var modalOpen = false;
+        var isZoomed = false;
+
+        // Alternar Zoom de foto ampliada (Exclusivo para PC / pantallas >= 768px)
+        function toggleImageZoom(e) {
+            if (window.innerWidth < 768) return; // En móviles no hace zoom
+
+            var imgEl = document.getElementById('lightbox-img');
+            var zoomHint = document.getElementById('lightbox-zoom-hint');
+            if (!imgEl) return;
+
+            isZoomed = !isZoomed;
+
+            if (isZoomed) {
+                var rect = imgEl.getBoundingClientRect();
+                var x = e ? Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100)) : 50;
+                var y = e ? Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100)) : 50;
+
+                imgEl.style.transformOrigin = x + '% ' + y + '%';
+                imgEl.style.transform = 'scale(1.85)';
+                imgEl.style.cursor = 'zoom-out';
+                imgEl.classList.remove('md:cursor-zoom-in');
+                imgEl.classList.add('md:cursor-zoom-out');
+
+                if (zoomHint) {
+                    zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/></svg><span>Clic para alejar</span>';
+                }
+            } else {
+                resetZoom();
+            }
+        }
+
+        // Seguir el cursor mientras está ampliada la foto (efecto lupa en PC)
+        function handleImageMouseMove(e) {
+            if (!isZoomed || window.innerWidth < 768) return;
+
+            var imgEl = document.getElementById('lightbox-img');
+            if (!imgEl) return;
+
+            var rect = imgEl.getBoundingClientRect();
+            var x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+            var y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+            imgEl.style.transformOrigin = x + '% ' + y + '%';
+        }
+
+        // Restablecer el zoom a estado normal
+        function resetZoom() {
+            isZoomed = false;
+            var imgEl = document.getElementById('lightbox-img');
+            var zoomHint = document.getElementById('lightbox-zoom-hint');
+
+            if (imgEl) {
+                imgEl.style.transform = 'scale(1)';
+                imgEl.style.transformOrigin = 'center center';
+                imgEl.style.cursor = '';
+                imgEl.classList.remove('md:cursor-zoom-out');
+                imgEl.classList.add('md:cursor-zoom-in');
+            }
+
+            if (zoomHint) {
+                zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg><span>Clic para ampliar</span>';
+            }
+        }
 
         // Abrir Álbum en Cuadrícula de 5 fotos
         function openAlbum(albumId) {
@@ -264,6 +332,7 @@
 
             currentAlbum = album;
             currentPhotoIndex = 0;
+            resetZoom();
 
             // Renderizar las miniaturas (máximo 5)
             var grid = document.getElementById('album-photos-grid');
@@ -309,6 +378,7 @@
             if (!currentAlbum || !currentAlbum.images[index]) return;
 
             currentPhotoIndex = index;
+            resetZoom();
             showLightboxImage();
 
             document.getElementById('modal-grid-view').classList.add('hidden');
@@ -321,6 +391,8 @@
         // Mostrar imagen actual en Lightbox
         function showLightboxImage() {
             if (!currentAlbum) return;
+
+            resetZoom();
 
             var imgEl = document.getElementById('lightbox-img');
             var spinner = document.getElementById('lightbox-spinner');
@@ -341,6 +413,7 @@
         // Navegar a la foto anterior
         function prevLightboxImage() {
             if (!currentAlbum) return;
+            resetZoom();
             var total = currentAlbum.images.length;
             currentPhotoIndex = (currentPhotoIndex - 1 + total) % total;
             showLightboxImage();
@@ -349,6 +422,7 @@
         // Navegar a la foto siguiente
         function nextLightboxImage() {
             if (!currentAlbum) return;
+            resetZoom();
             var total = currentAlbum.images.length;
             currentPhotoIndex = (currentPhotoIndex + 1) % total;
             showLightboxImage();
@@ -356,6 +430,7 @@
 
         // Volver de la vista Lightbox a la cuadrícula de 5 fotos
         function backToAlbumGrid() {
+            resetZoom();
             document.getElementById('modal-grid-view').classList.remove('hidden');
             document.getElementById('modal-lightbox-view').classList.add('hidden');
             document.getElementById('modal-back-btn').classList.add('hidden');
@@ -364,6 +439,7 @@
 
         // Abrir Modal de Video
         function openVideo(youtubeId, title) {
+            resetZoom();
             var iframe = document.getElementById('video-frame');
             iframe.src = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1';
 
@@ -381,6 +457,7 @@
 
         // Cerrar Modal
         function closeModal() {
+            resetZoom();
             var modal = document.getElementById('album-modal');
             modal.classList.add('hidden');
             document.getElementById('video-frame').src = '';
