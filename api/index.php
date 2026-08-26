@@ -4,26 +4,23 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-// 1. Crear directorios temporales en /tmp (único directorio con permisos de escritura en Vercel)
+// 1. Crear directorios temporales en /tmp solo si no existen (evita I/O en cada petición)
 $storagePath = '/tmp/storage';
 
-$dirs = [
-    $storagePath,
-    $storagePath . '/app',
-    $storagePath . '/app/public',
-    $storagePath . '/framework',
-    $storagePath . '/framework/cache',
-    $storagePath . '/framework/cache/data',
-    $storagePath . '/framework/sessions',
-    $storagePath . '/framework/views',
-    $storagePath . '/logs',
-    $storagePath . '/bootstrap',
-    $storagePath . '/bootstrap/cache',
-];
+if (!is_dir($storagePath . '/bootstrap/cache')) {
+    $dirs = [
+        $storagePath . '/app/public',
+        $storagePath . '/framework/cache/data',
+        $storagePath . '/framework/sessions',
+        $storagePath . '/framework/views',
+        $storagePath . '/logs',
+        $storagePath . '/bootstrap/cache',
+    ];
 
-foreach ($dirs as $dir) {
-    if (!is_dir($dir)) {
-        @mkdir($dir, 0755, true);
+    foreach ($dirs as $dir) {
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
     }
 }
 
