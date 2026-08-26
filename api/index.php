@@ -4,7 +4,53 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-// Emular mod_rewrite para el servidor integrado de PHP en Vercel
+// 1. Crear directorios temporales en /tmp (único directorio con permisos de escritura en Vercel)
+$storagePath = '/tmp/storage';
+
+$dirs = [
+    $storagePath,
+    $storagePath . '/app',
+    $storagePath . '/app/public',
+    $storagePath . '/framework',
+    $storagePath . '/framework/cache',
+    $storagePath . '/framework/cache/data',
+    $storagePath . '/framework/sessions',
+    $storagePath . '/framework/views',
+    $storagePath . '/logs',
+    $storagePath . '/bootstrap',
+    $storagePath . '/bootstrap/cache',
+];
+
+foreach ($dirs as $dir) {
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0755, true);
+    }
+}
+
+// 2. Establecer variables de entorno antes de que Laravel arranque
+$envVars = [
+    'APP_STORAGE' => $storagePath,
+    'APP_SERVICES_CACHE' => $storagePath . '/bootstrap/cache/services.php',
+    'APP_PACKAGES_CACHE' => $storagePath . '/bootstrap/cache/packages.php',
+    'APP_CONFIG_CACHE' => $storagePath . '/bootstrap/cache/config.php',
+    'APP_ROUTES_CACHE' => $storagePath . '/bootstrap/cache/routes-v7.php',
+    'APP_EVENTS_CACHE' => $storagePath . '/bootstrap/cache/events.php',
+    'VIEW_COMPILED_PATH' => $storagePath . '/framework/views',
+    'CACHE_STORE' => 'array',
+    'CACHE_DRIVER' => 'array',
+    'SESSION_DRIVER' => 'cookie',
+    'LOG_CHANNEL' => 'stderr',
+];
+
+foreach ($envVars as $key => $val) {
+    if (!getenv($key)) {
+        putenv("{$key}={$val}");
+    }
+    $_ENV[$key] = $_ENV[$key] ?? $val;
+    $_SERVER[$key] = $_SERVER[$key] ?? $val;
+}
+
+// 3. Emular mod_rewrite para el servidor integrado de PHP en Vercel
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? ''
 );
@@ -20,7 +66,11 @@ try {
 } catch (\Throwable $e) {
     http_response_code(500);
     header('Content-Type: text/html; charset=utf-8');
+    echo "<!DOCTYPE html><html><head><title>Error en Laravel</title><meta charset='utf-8'><style>body{background:#0d1117;color:#c9d1d9;font-family:system-ui,-apple-system,sans-serif;padding:30px;}h1{color:#f85149;}pre{background:#161b22;padding:15px;border-radius:8px;overflow:auto;border:1px solid #30363d;}</style></head><body>";
     echo "<h1>Error en Laravel: " . htmlspecialchars($e->getMessage()) . "</h1>";
-    echo "<p><strong>Archivo:</strong> " . htmlspecialchars($e->getFile()) . ":" . $e->getLine() . "</p>";
-    echo "<pre style='background:#111;color:#fff;padding:15px;border-radius:8px;'>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    echo "<p><strong>Archivo:</strong> " . htmlspecialchars($e->getFile()) . " en línea <strong>" . $e->getLine() . "</strong></p>";
+    echo "<h3>Stack Trace:</h3>";
+    echo "<pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    echo "</body></html>";
 }
+

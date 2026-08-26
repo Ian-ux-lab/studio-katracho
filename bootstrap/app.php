@@ -4,6 +4,18 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+// Configurar storage path para entornos Serverless como Vercel
+$storagePath = getenv('APP_STORAGE') ?: ((isset($_SERVER['VERCEL']) || getenv('VERCEL')) ? '/tmp/storage' : null);
+
+if ($storagePath) {
+    foreach (['framework/views', 'framework/cache/data', 'framework/sessions', 'logs', 'app/public', 'bootstrap/cache'] as $sub) {
+        $dir = $storagePath . '/' . $sub;
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+    }
+}
+
 $app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -17,17 +29,8 @@ $app = Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-// Ajustar rutas de almacenamiento dinámicas para entornos Serverless como Vercel
-$storagePath = getenv('APP_STORAGE') ?: ((isset($_SERVER['VERCEL']) || getenv('VERCEL')) ? '/tmp/storage' : null);
-
 if ($storagePath) {
     $app->useStoragePath($storagePath);
-    foreach (['framework/views', 'framework/cache/data', 'framework/sessions', 'logs', 'app/public'] as $sub) {
-        $dir = $storagePath . '/' . $sub;
-        if (!is_dir($dir)) {
-            @mkdir($dir, 0755, true);
-        }
-    }
 }
 
 return $app;

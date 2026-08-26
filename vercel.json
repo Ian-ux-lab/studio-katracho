@@ -15,20 +15,23 @@
   ],
   "routes": [
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "dest": "/build/$1"
     },
     {
       "src": "/img/(.*)",
-      "dest": "/public/img/$1"
+      "dest": "/img/$1"
     },
     {
       "src": "/favicon.ico",
-      "dest": "/public/favicon.ico"
+      "dest": "/favicon.ico"
     },
     {
       "src": "/robots.txt",
-      "dest": "/public/robots.txt"
+      "dest": "/robots.txt"
     },
     {
       "src": "/(.*)",
@@ -36,9 +39,18 @@
     }
   ],
   "env": {
+    "APP_NAME": "Studio Katracho",
     "APP_ENV": "production",
-    "APP_DEBUG": "true",
-    "VIEW_COMPILED_PATH": "/tmp",
+    "APP_DEBUG": "false",
+    "APP_KEY": "base64:sZfaavb05fVUEkG58Cb6Dee5Df002+lJx+xC56hG6RI=",
+    "APP_STORAGE": "/tmp/storage",
+    "APP_SERVICES_CACHE": "/tmp/storage/bootstrap/cache/services.php",
+    "APP_PACKAGES_CACHE": "/tmp/storage/bootstrap/cache/packages.php",
+    "APP_CONFIG_CACHE": "/tmp/storage/bootstrap/cache/config.php",
+    "APP_ROUTES_CACHE": "/tmp/storage/bootstrap/cache/routes-v7.php",
+    "APP_EVENTS_CACHE": "/tmp/storage/bootstrap/cache/events.php",
+    "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
+    "CACHE_STORE": "array",
     "CACHE_DRIVER": "array",
     "SESSION_DRIVER": "cookie",
     "LOG_CHANNEL": "stderr"
