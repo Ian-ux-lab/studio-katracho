@@ -42,6 +42,8 @@
     "CACHE_STORE": "array",
     "CACHE_DRIVER": "array",
     "SESSION_DRIVER": "cookie",
-    "LOG_CHANNEL": "stderr"
+    "LOG_CHANNEL": "stderr",
+    "APP_MAINTENANCE_DRIVER": "file",
+    "APP_MAINTENANCE_STORE": "array"
   }
 }
