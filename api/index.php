@@ -1,11 +1,10 @@
 <?php
 
-/**
- * Punto de entrada Serverless para Vercel
- * Redirige todas las solicitudes a Laravel en entorno serverless.
- */
+use Illuminate\Http\Request;
 
-// Crear directorios temporales requeridos por Laravel en /tmp (única ruta con permisos de escritura en Vercel)
+define('LARAVEL_START', microtime(true));
+
+// Crear directorios requeridos en /tmp para Vercel Serverless
 $directories = [
     '/tmp/storage',
     '/tmp/storage/framework',
@@ -26,15 +25,11 @@ foreach ($directories as $dir) {
     }
 }
 
-// Configurar variables de entorno críticas para Serverless
+// Variables de entorno para Serverless
 putenv('APP_STORAGE=/tmp/storage');
 putenv('VIEW_COMPILED_PATH=/tmp/storage/framework/views');
-putenv('APP_SERVICES_CACHE=/tmp/storage/bootstrap/cache/services.php');
-putenv('APP_PACKAGES_CACHE=/tmp/storage/bootstrap/cache/packages.php');
-putenv('APP_CONFIG_CACHE=/tmp/storage/bootstrap/cache/config.php');
-putenv('APP_ROUTES_CACHE=/tmp/storage/bootstrap/cache/routes.php');
-putenv('APP_EVENTS_CACHE=/tmp/storage/bootstrap/cache/events.php');
 putenv('SESSION_DRIVER=cookie');
+putenv('CACHE_STORE=file');
 putenv('LOG_CHANNEL=stderr');
 
 $_ENV['APP_STORAGE'] = '/tmp/storage';
@@ -42,5 +37,16 @@ $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 $_SERVER['APP_STORAGE'] = '/tmp/storage';
 $_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 
-// Cargar el archivo principal de Laravel
-require __DIR__ . '/../public/index.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+try {
+    $app = require_once __DIR__ . '/../bootstrap/app.php';
+    $app->handleRequest(Request::capture());
+} catch (\Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: text/html; charset=utf-8');
+    echo "<h1>Error en Vercel Serverless</h1>";
+    echo "<p><strong>Mensaje:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
+    echo "<p><strong>Archivo:</strong> " . htmlspecialchars($e->getFile()) . " en línea " . $e->getLine() . "</p>";
+    echo "<pre style='background:#111;color:#eee;padding:15px;border-radius:6px;'>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+}
