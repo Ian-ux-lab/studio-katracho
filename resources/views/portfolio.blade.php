@@ -219,18 +219,18 @@
                     </svg>
                 </button>
 
-                <!-- Contenedor de la Imagen Principal con Zoom Interactivo -->
-                <div id="lightbox-img-container" class="w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden relative" onmousemove="handleImageMouseMove(event)">
+                <!-- Contenedor de la Imagen Principal con Zoom Interactivo para PC y Tablet -->
+                <div id="lightbox-img-container" class="w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden relative touch-none sm:touch-auto" onmousemove="handleImageMouseMove(event)">
                     <div id="lightbox-spinner" class="absolute flex items-center justify-center pointer-events-none">
                         <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                     </div>
-                    <img id="lightbox-img" src="" alt="Fotografía del álbum" class="max-w-full max-h-[72vh] object-contain rounded transition-all duration-300 opacity-0 md:cursor-zoom-in" decoding="async" onclick="toggleImageZoom(event)">
+                    <img id="lightbox-img" src="" alt="Fotografía del álbum" class="max-w-full max-h-[72vh] object-contain rounded transition-transform duration-200 opacity-0 md:cursor-zoom-in select-none" decoding="async" onclick="toggleImageZoom(event)">
                 </div>
 
-                <!-- Indicador de Zoom (Solo visible en Desktop/PC) -->
+                <!-- Indicador de Zoom (Visible en Tablet y PC >= 768px) -->
                 <div id="lightbox-zoom-hint" class="hidden md:flex items-center gap-1.5 absolute top-4 right-4 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/10 rounded-full text-[0.68rem] font-medium text-white/80 z-30 pointer-events-none transition-all">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
-                    <span>Clic para ampliar</span>
+                    <span>Toca o clic para ampliar</span>
                 </div>
 
                 <!-- Flecha Siguiente -->
@@ -264,9 +264,9 @@
         var modalOpen = false;
         var isZoomed = false;
 
-        // Alternar Zoom de foto ampliada (Exclusivo para PC / pantallas >= 768px)
+        // Alternar Zoom de foto ampliada (Exclusivo para PC y Tablet >= 768px, desactivado en móvil)
         function toggleImageZoom(e) {
-            if (window.innerWidth < 768) return; // En móviles no hace zoom
+            if (window.innerWidth < 768) return; // En teléfonos móviles no hace zoom
 
             var imgEl = document.getElementById('lightbox-img');
             var zoomHint = document.getElementById('lightbox-zoom-hint');
@@ -276,24 +276,27 @@
 
             if (isZoomed) {
                 var rect = imgEl.getBoundingClientRect();
-                var x = e ? Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100)) : 50;
-                var y = e ? Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100)) : 50;
+                var clientX = (e && e.touches && e.touches.length) ? e.touches[0].clientX : (e ? e.clientX : undefined);
+                var clientY = (e && e.touches && e.touches.length) ? e.touches[0].clientY : (e ? e.clientY : undefined);
+
+                var x = (clientX !== undefined) ? Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100)) : 50;
+                var y = (clientY !== undefined) ? Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100)) : 50;
 
                 imgEl.style.transformOrigin = x + '% ' + y + '%';
-                imgEl.style.transform = 'scale(1.85)';
+                imgEl.style.transform = 'scale(1.9)';
                 imgEl.style.cursor = 'zoom-out';
                 imgEl.classList.remove('md:cursor-zoom-in');
                 imgEl.classList.add('md:cursor-zoom-out');
 
                 if (zoomHint) {
-                    zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/></svg><span>Clic para alejar</span>';
+                    zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/></svg><span>Toca o clic para alejar</span>';
                 }
             } else {
                 resetZoom();
             }
         }
 
-        // Seguir el cursor mientras está ampliada la foto (efecto lupa en PC)
+        // Seguir el cursor mientras está ampliada la foto (en PC)
         function handleImageMouseMove(e) {
             if (!isZoomed || window.innerWidth < 768) return;
 
@@ -303,6 +306,25 @@
             var rect = imgEl.getBoundingClientRect();
             var x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
             var y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+            imgEl.style.transformOrigin = x + '% ' + y + '%';
+        }
+
+        // Desplazar la foto ampliada con el dedo (en Tablet >= 768px)
+        function handleImageTouchMove(e) {
+            if (!isZoomed || window.innerWidth < 768 || !e.touches || e.touches.length !== 1) return;
+
+            if (e.cancelable) e.preventDefault();
+
+            var imgEl = document.getElementById('lightbox-img');
+            if (!imgEl) return;
+
+            var rect = imgEl.getBoundingClientRect();
+            var touchX = e.touches[0].clientX;
+            var touchY = e.touches[0].clientY;
+
+            var x = Math.max(0, Math.min(100, ((touchX - rect.left) / rect.width) * 100));
+            var y = Math.max(0, Math.min(100, ((touchY - rect.top) / rect.height) * 100));
+
             imgEl.style.transformOrigin = x + '% ' + y + '%';
         }
 
@@ -321,7 +343,7 @@
             }
 
             if (zoomHint) {
-                zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg><span>Clic para ampliar</span>';
+                zoomHint.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg><span>Toca o clic para ampliar</span>';
             }
         }
 
@@ -525,6 +547,12 @@
             var initialActiveBtn = document.querySelector('.filter-btn.active') || filterButtons[0];
             if (initialActiveBtn) {
                 applyFilter(initialActiveBtn.getAttribute('data-filter'));
+            }
+
+            // Soporte para arrastrar fotos ampliadas con el dedo en tablet
+            var imgContainer = document.getElementById('lightbox-img-container');
+            if (imgContainer) {
+                imgContainer.addEventListener('touchmove', handleImageTouchMove, { passive: false });
             }
         });
     </script>
