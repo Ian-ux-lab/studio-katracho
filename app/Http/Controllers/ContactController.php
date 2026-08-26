@@ -32,12 +32,24 @@ class ContactController extends Controller
         try {
             Mail::to('fa2288050@gmail.com')->send(new ContactMail($validated));
 
-            return back()->with('success', '¡Mensaje enviado con éxito! Te responderemos muy pronto a tu correo.');
-        } catch (\Exception $e) {
+            $msg = '¡Mensaje enviado con éxito! Te responderemos muy pronto a tu correo.';
+
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json(['success' => true, 'message' => $msg]);
+            }
+
+            return back()->with('success', $msg);
+        } catch (\Throwable $e) {
             Log::error('Error al enviar correo de contacto: ' . $e->getMessage());
 
+            $errMsg = 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a fa2288050@gmail.com';
+
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => $errMsg . ' (' . $e->getMessage() . ')'], 500);
+            }
+
             return back()
-                ->with('error', 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a fa2288050@gmail.com')
+                ->with('error', $errMsg)
                 ->withInput();
         }
     }
