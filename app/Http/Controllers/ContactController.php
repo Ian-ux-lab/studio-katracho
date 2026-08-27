@@ -30,7 +30,7 @@ class ContactController extends Controller
         $validated['date'] = now()->setTimezone('America/Tegucigalpa')->format('d/m/Y h:i A');
 
         try {
-            Mail::to('fa2288050@gmail.com')->send(new ContactMail($validated));
+            Mail::to('studiokatracho@gmail.com')->send(new ContactMail($validated));
 
             $msg = '¡Mensaje enviado con éxito! Te responderemos muy pronto a tu correo.';
 
@@ -42,7 +42,7 @@ class ContactController extends Controller
         } catch (\Throwable $e) {
             Log::error('Error al enviar correo de contacto: ' . $e->getMessage());
 
-            $errMsg = 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a fa2288050@gmail.com';
+            $errMsg = 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a studiokatracho@gmail.com';
 
             if ($request->expectsJson() || $request->ajax()) {
                 return response()->json(['success' => false, 'message' => $errMsg . ' (' . $e->getMessage() . ')'], 500);

@@ -67,7 +67,7 @@
                 <div class="md:col-span-5">
                     <h4 class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-5">Contacto</h4>
                     <div class="flex flex-col gap-3">
-                        <span class="text-sm text-white/80">fa2288050@gmail.com</span>
+                        <span class="text-sm text-white/80">studiokatracho@gmail.com</span>
                         <span class="text-sm text-white/80">Juticalpa y Catacamas, Olancho</span>
                     </div>
                     <div class="flex gap-3 mt-6">

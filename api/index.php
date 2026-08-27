@@ -42,10 +42,10 @@ $envVars = [
     'MAIL_MAILER' => 'smtp',
     'MAIL_HOST' => 'smtp.gmail.com',
     'MAIL_PORT' => '587',
-    'MAIL_USERNAME' => 'fa2288050@gmail.com',
+    'MAIL_USERNAME' => 'studiokatracho@gmail.com',
     'MAIL_PASSWORD' => 'trwmvgtwoskjezcj',
     'MAIL_ENCRYPTION' => 'tls',
-    'MAIL_FROM_ADDRESS' => 'fa2288050@gmail.com',
+    'MAIL_FROM_ADDRESS' => 'studiokatracho@gmail.com',
     'MAIL_FROM_NAME' => 'Studio Katracho',
 ];
 

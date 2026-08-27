@@ -20,7 +20,7 @@
                     <div class="space-y-8">
                         <div>
                             <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-2">Email</p>
-                            <p class="text-sm text-white">fa2288050@gmail.com</p>
+                            <p class="text-sm text-white">studiokatracho@gmail.com</p>
                         </div>
                         <div>
                             <p class="text-[0.65rem] font-medium tracking-[0.15em] uppercase text-white/60 mb-2">Ubicación</p>
@@ -142,7 +142,7 @@
                 }
             } catch (err) {
                 statusMsg.className = 'mt-6 p-4 bg-red-900/30 border border-red-600/60 text-red-300 text-sm rounded-lg flex items-center gap-3';
-                statusMsg.innerHTML = '<svg class="w-5 h-5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span>' + (err.message || 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a fa2288050@gmail.com') + '</span>';
+                statusMsg.innerHTML = '<svg class="w-5 h-5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span>' + (err.message || 'No se pudo enviar el correo en este momento. Por favor contáctanos directamente a studiokatracho@gmail.com') + '</span>';
                 statusMsg.classList.remove('hidden');
             } finally {
                 btn.disabled = false;
