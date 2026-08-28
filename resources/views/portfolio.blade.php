@@ -220,7 +220,7 @@
                 </button>
 
                 <!-- Contenedor de la Imagen Principal con Zoom Interactivo para PC y Tablet -->
-                <div id="lightbox-img-container" class="w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden relative touch-none sm:touch-auto" onmousemove="handleImageMouseMove(event)">
+                <div id="lightbox-img-container" class="w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden relative touch-auto" onmousemove="handleImageMouseMove(event)">
                     <div id="lightbox-spinner" class="absolute flex items-center justify-center pointer-events-none">
                         <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                     </div>
@@ -266,7 +266,7 @@
 
         // Alternar Zoom de foto ampliada (Exclusivo para PC y Tablet >= 768px, desactivado en móvil)
         function toggleImageZoom(e) {
-            if (window.innerWidth < 768) return; // En teléfonos móviles no hace zoom
+            if (window.innerWidth < 768) return; // En teléfonos móviles no hace zoom de clic
 
             var imgEl = document.getElementById('lightbox-img');
             var zoomHint = document.getElementById('lightbox-zoom-hint');
@@ -279,8 +279,8 @@
                 var clientX = (e && e.touches && e.touches.length) ? e.touches[0].clientX : (e ? e.clientX : undefined);
                 var clientY = (e && e.touches && e.touches.length) ? e.touches[0].clientY : (e ? e.clientY : undefined);
 
-                var x = (clientX !== undefined) ? Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100)) : 50;
-                var y = (clientY !== undefined) ? Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100)) : 50;
+                var x = (clientX !== undefined) ? Math.max(0, Math.min(100, 100 - ((clientX - rect.left) / rect.width) * 100)) : 50;
+                var y = (clientY !== undefined) ? Math.max(0, Math.min(100, 100 - ((clientY - rect.top) / rect.height) * 100)) : 50;
 
                 imgEl.style.transformOrigin = x + '% ' + y + '%';
                 imgEl.style.transform = 'scale(1.9)';
@@ -304,8 +304,8 @@
             if (!imgEl) return;
 
             var rect = imgEl.getBoundingClientRect();
-            var x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
-            var y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+            var x = Math.max(0, Math.min(100, 100 - ((e.clientX - rect.left) / rect.width) * 100));
+            var y = Math.max(0, Math.min(100, 100 - ((e.clientY - rect.top) / rect.height) * 100));
             imgEl.style.transformOrigin = x + '% ' + y + '%';
         }
 
@@ -322,8 +322,8 @@
             var touchX = e.touches[0].clientX;
             var touchY = e.touches[0].clientY;
 
-            var x = Math.max(0, Math.min(100, ((touchX - rect.left) / rect.width) * 100));
-            var y = Math.max(0, Math.min(100, ((touchY - rect.top) / rect.height) * 100));
+            var x = Math.max(0, Math.min(100, 100 - ((touchX - rect.left) / rect.width) * 100));
+            var y = Math.max(0, Math.min(100, 100 - ((touchY - rect.top) / rect.height) * 100));
 
             imgEl.style.transformOrigin = x + '% ' + y + '%';
         }
