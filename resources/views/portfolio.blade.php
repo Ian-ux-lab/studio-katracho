@@ -249,7 +249,14 @@
             <!-- Vista Video YouTube -->
             <div id="modal-video-view" class="hidden p-4 sm:p-6 bg-black">
                 <div class="w-full aspect-video bg-[#111111] rounded-lg overflow-hidden shadow-2xl border border-[#222222]">
-                    <iframe id="video-frame" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe id="video-frame" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="mt-3 flex items-center justify-between text-xs text-white/60">
+                    <span id="modal-video-title" class="font-medium text-white/90 truncate"></span>
+                    <a id="video-direct-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white transition-colors ml-4 shrink-0 text-xs font-medium">
+                        <svg class="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>Abrir en YouTube</span>
+                    </a>
                 </div>
             </div>
 
@@ -472,6 +479,16 @@
             var iframe = document.getElementById('video-frame');
             iframe.src = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1';
 
+            var directLink = document.getElementById('video-direct-link');
+            if (directLink) {
+                directLink.href = 'https://www.youtube.com/watch?v=' + youtubeId;
+            }
+
+            var titleEl = document.getElementById('modal-video-title');
+            if (titleEl) {
+                titleEl.textContent = title || '';
+            }
+
             document.getElementById('modal-grid-view').classList.add('hidden');
             document.getElementById('modal-lightbox-view').classList.add('hidden');
             document.getElementById('modal-video-view').classList.remove('hidden');
@@ -490,6 +507,8 @@
             var modal = document.getElementById('album-modal');
             modal.classList.add('hidden');
             document.getElementById('video-frame').src = '';
+            var directLink = document.getElementById('video-direct-link');
+            if (directLink) directLink.href = '#';
             document.body.style.overflow = '';
             modalOpen = false;
             currentAlbum = null;
